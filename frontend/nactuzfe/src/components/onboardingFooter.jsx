@@ -2,17 +2,17 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import theme from "../assets/theme";
 import Fonts from "../assets/Font";
-import linkedinIcon from '../assets/images/linkedin.png'
-import instagramIcon from '../assets/images/instagram.png'
-import emailIcon from '../assets/images/email.png'
+import LinkedIn from '../assets/images/linkedin.svg'
+import Instagram from '../assets/images/instagram.svg'
+import Email from '../assets/images/email.svg'
 
 function OnboardingFooter() {
     return (
         <View style={styles.footer}>
             <View style={styles.icons}>
-                <Image source={linkedinIcon} />
-                <Image source={instagramIcon} />
-                <Image source={emailIcon} />
+                <LinkedIn />
+                <Instagram />
+                <Email />
             </View>
             <Text style={styles.footerText}>By creating an account, I accept the <Text style={{ fontFamily: Fonts.interBold12.fontFamily, fontSize: Fonts.interBold12.fontSize, color: theme.mainText }}>Terms & Conditions</Text></Text>
             <Text style={styles.footerText}>Version 1.0.0</Text>

@@ -23,7 +23,7 @@ function LoginPage() {
     };
 
     function handleSendOtpOnLoginPage() {
-        // API 1 -> POST API to check if phone number is a current user or not 
+        // API1 -> POST API to check if phone number is a current user or not 
         navigation.navigate('Verify OTP Page')
     }
 
