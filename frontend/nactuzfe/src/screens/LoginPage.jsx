@@ -5,12 +5,16 @@ import theme from "../assets/theme";
 import Fonts from "../assets/Font";
 import OnboardingFooter from "../components/onboardingFooter";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { setPhoneNumber as setPhoneNumberAction } from "../redux/phoneSlice";
 
 
 function LoginPage() {
+    const dispatch = useDispatch();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [buttonOpacity, setButtonOpacity] = useState(0.5)
     const navigation = useNavigation();
+    const defaultPhoneNumber = useSelector((state) => state.phone.phoneNumber)
 
     const handlePhoneNumberChange = (text) => {
         const formattedPhoneNumber = text.replace(/[^0-9]/g, '');
@@ -24,7 +28,13 @@ function LoginPage() {
 
     function handleSendOtpOnLoginPage() {
         // API1 -> POST API to check if phone number is a current user or not 
-        navigation.navigate('Verify OTP Page')
+        if (phoneNumber == '1234567899') {
+            navigation.navigate('Verify OTP Page')
+        } else {
+            dispatch(setPhoneNumberAction(phoneNumber));
+            navigation.navigate('Sign Up Page')
+            // navigation.navigate('Sign Up Page')
+        }
     }
 
     //CSS Below This, Dont move this please

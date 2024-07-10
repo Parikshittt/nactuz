@@ -1,11 +1,10 @@
-import { createStore, combineReducers } from 'redux';
-import userReducer from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
+import phoneReducer from './phoneSlice';
 
-const rootReducer = combineReducers({
-    user: userReducer,
-    // other reducers can be added here
+export const store = configureStore({
+    reducer: {
+        phone: phoneReducer,
+    },
 });
-
-const store = createStore(rootReducer);
 
 export default store;

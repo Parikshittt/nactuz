@@ -223,7 +223,7 @@ function VerifyPhoneNumber() {
                 <View>
                     <TouchableOpacity disabled={otp.length < 6}>
                         <View style={styles.sendOtpButton}>
-                            <Text style={styles.sendOtpText}>SEND OTP</Text>
+                            <Text style={styles.sendOtpText}>ENTER OTP</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

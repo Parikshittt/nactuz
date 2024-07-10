@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import LoginPage from './src/screens/LoginPage';
 import VerifyPhoneNumber from './src/screens/VerifyPhoneNumber';
+import SignUpPage from './src/screens/SignUpPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,11 @@ function App() {
                     <Stack.Screen
                         name="Verify OTP Page"
                         component={VerifyPhoneNumber}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Sign Up Page"
+                        component={SignUpPage}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
