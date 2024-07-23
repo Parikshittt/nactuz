@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nactuz_flutter/base/analytics_highlights.dart';
 import 'package:nactuz_flutter/base/header_user_info.dart';
 import 'package:nactuz_flutter/base/home_page_cards.dart';
 import 'package:nactuz_flutter/base/search_bar.dart';
-import 'package:nactuz_flutter/styles/app_styles.dart';
-import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

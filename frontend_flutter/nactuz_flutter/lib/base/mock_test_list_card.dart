@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nactuz_flutter/media.dart';
 import 'package:nactuz_flutter/styles/app_styles.dart';
 
 class MockTestListCard extends StatefulWidget {
@@ -13,12 +11,6 @@ class MockTestListCard extends StatefulWidget {
 }
 
 class _MockTestListCardState extends State<MockTestListCard> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   int _tappedCardId = 0;
 
   void _handleCardTap(int id) {
@@ -125,59 +117,60 @@ class _MockTestListCardState extends State<MockTestListCard> {
                     ),
                     _tappedCardId == testDetails['id']
                         ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          child: InkWell(
-                            child: Container(
-                              height: 40,
-                              padding: const EdgeInsets.fromLTRB(5, 1, 5, 1),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppStyles.brandColor,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'ADD TO CART',
-                                  style: AppStyles.outlineButtonText,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Flexible(
-                          flex: 1,
-                          child: InkWell(
-                            child: Container(
-                              height: 40,
-                              padding: const EdgeInsets.fromLTRB(5, 1, 5, 1),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppStyles.brandColor,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'ADD TO CART',
-                                  style: AppStyles.outlineButtonText,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                flex: 1,
+                                child: InkWell(
+                                  child: Container(
+                                    height: 40,
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 1, 5, 1),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: AppStyles.brandColor,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'ADD TO CART',
+                                        style: AppStyles.outlineButtonText,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: InkWell(
+                                  child: Container(
+                                    height: 40,
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 1, 5, 1),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: AppStyles.brandColor,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'ADD TO CART',
+                                        style: AppStyles.outlineButtonText,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
                         : Container(),
-
                   ],
                 ),
               ),

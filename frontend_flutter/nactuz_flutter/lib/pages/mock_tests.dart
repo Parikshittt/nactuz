@@ -1,8 +1,7 @@
-import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nactuz_flutter/media.dart';
-import 'package:nactuz_flutter/home_page_screens/home_screen.dart';
+
 import 'package:nactuz_flutter/mock_test_screens/mock_tests_list.dart';
 
 class MockTests extends StatefulWidget {
@@ -23,12 +22,12 @@ class _BottomNavBarState extends State<MockTests> {
   int _selectedIconIndex = 0;
 
   void _bottomNavBarButtonTapped(int index) {
-    if(index==3){
+    if (index == 3) {
       setState(() {
         _selectedIconIndex = 0;
         Navigator.pushNamed(context, '/');
       });
-    }else{
+    } else {
       setState(() {
         _selectedIconIndex = index;
       });
@@ -36,7 +35,6 @@ class _BottomNavBarState extends State<MockTests> {
   }
 
   @override
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
