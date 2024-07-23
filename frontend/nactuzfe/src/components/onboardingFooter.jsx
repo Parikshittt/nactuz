@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import theme from "../assets/theme";
 import Fonts from "../assets/Font";
 import LinkedIn from '../assets/images/linkedin.svg'

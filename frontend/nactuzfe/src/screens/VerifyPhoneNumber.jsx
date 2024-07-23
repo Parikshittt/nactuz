@@ -4,7 +4,7 @@ import theme from "../assets/theme";
 import Fonts from "../assets/Font";
 import { useState } from "react";
 import { Dimensions } from 'react-native';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import OnboardingFooter from "../components/onboardingFooter";
 
@@ -14,6 +14,8 @@ function VerifyPhoneNumber() {
     const navigation = useNavigation();
     const [secondsLeft, setSecondsLeft] = useState(30);
     const [showResend, setShowResend] = useState(false);
+    const route = useRoute();
+    const { fakeOTP } = route.params;
 
     useEffect(() => {
         let intervalId;
@@ -34,6 +36,7 @@ function VerifyPhoneNumber() {
             setSecondsLeft(30); // Reset the countdown timer
             setShowResend(false); // Show the countdown again
         }
+        console.log('Here is the OTP ->', fakeOTP)
     };
 
     const containerWidth = (Dimensions.get('window').width - 96) // Adjust as per your layout

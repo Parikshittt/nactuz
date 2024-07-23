@@ -29,7 +29,11 @@ function LoginPage() {
     function handleSendOtpOnLoginPage() {
         // API1 -> POST API to check if phone number is a current user or not 
         if (phoneNumber == '1234567899') {
-            navigation.navigate('Verify OTP Page')
+            const fakeOTP = Math.floor((Math.random() * 999999))
+            console.log('Generated OTP', fakeOTP)
+            navigation.navigate('Verify OTP Page', {
+                fakeOTP: fakeOTP
+            })
         } else {
             dispatch(setPhoneNumberAction(phoneNumber));
             navigation.navigate('Sign Up Page')

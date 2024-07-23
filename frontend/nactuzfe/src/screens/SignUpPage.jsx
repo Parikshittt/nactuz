@@ -82,10 +82,11 @@ function SignUpPage() {
         }
     };
 
-    const handleSendOtpOnLoginPage = () => {
+    const handleSendOtpOnSignUpPage = () => {
         // Replace with your logic for sending OTP and navigating accordingly
         if (phoneNumber === '1234567899') {
             // navigation.navigate('Verify OTP Page')
+            dispatch(setPhoneNumberAction(phoneNumber))
             console.log('Navigate to Verify OTP Page');
         } else {
             dispatch(setPhoneNumberAction(phoneNumber));
@@ -215,6 +216,7 @@ function SignUpPage() {
                                 maxLength={20}
                                 onChangeText={handleLocalityInputChange}
                                 value={userInput}
+                                onBlur={clickedOnSuggestion}
                             />
                         </View>
                         {firstSuggestion ? (
@@ -232,7 +234,7 @@ function SignUpPage() {
                             <TextInput
                                 style={styles.inputClass}
                                 keyboardType="numeric"
-                                value={defaultPhoneNumber}
+                                defaultValue={defaultPhoneNumber}
                                 maxLength={10}
                                 onChangeText={handlePhoneNumberChange}
                             />
@@ -240,7 +242,7 @@ function SignUpPage() {
                     </View>
                 </View>
                 <View>
-                    <TouchableOpacity disabled={phoneNumber.length < 10} onPress={handleSendOtpOnLoginPage}>
+                    <TouchableOpacity disabled={phoneNumber.length < 10} onPress={handleSendOtpOnSignUpPage}>
                         <View style={styles.sendOtpButton}>
                             <Text style={styles.sendOtpText}>SEND OTP</Text>
                         </View>
