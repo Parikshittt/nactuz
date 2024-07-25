@@ -39,4 +39,13 @@ class AppStyles {
       fontSize: 16, fontWeight: FontWeight.w700, color: mainTextColor, letterSpacing: -1.2, fontFamily: 'InterFigmaFont');
   static const TextStyle outlineButtonText = TextStyle(
       fontSize: 16, fontWeight: FontWeight.w700, color: brandColor, fontFamily: 'InterFigmaFont');
+  static const TextStyle filledButtonText = TextStyle(
+      fontSize: 16, fontWeight: FontWeight.w700, color: cardBackgroundColor, fontFamily: 'InterFigmaFont');
+
+  static const TextStyle badgeText = TextStyle(
+      fontSize: 12, fontWeight: FontWeight.w700, color: mainBackgroundColor, fontFamily: 'InterFigmaFont');
+
+  static const TextStyle twelveRegularBrand = TextStyle(
+      fontSize: 12, fontWeight: FontWeight.w400, color: brandColor, fontFamily: 'InterFigmaFont');
+
 }

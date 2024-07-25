@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:nactuz_flutter/base/analytics_highlights.dart';
 import 'package:nactuz_flutter/base/header_user_info.dart';
 import 'package:nactuz_flutter/base/home_page_cards.dart';
-import 'package:nactuz_flutter/base/search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
+
+
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -16,10 +18,6 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const HeaderUserInfo(),
-              const SizedBox(
-                height: 15,
-              ),
-              const SearchBarComponent(),
               const SizedBox(
                 height: 15,
               ),

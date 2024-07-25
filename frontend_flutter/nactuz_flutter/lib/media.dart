@@ -25,5 +25,7 @@ class AppMedia{
   static const upcomingRegular = '$_baseFolder/upcomingRegular.svg';
   static const upcomingFilled = '$_baseFolder/upcomingFilled.svg';
 
+  static const openCart = '$_baseFolder/openCart.svg';
+
 
 }
