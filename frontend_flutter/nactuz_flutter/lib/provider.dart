@@ -22,3 +22,5 @@ final studentFullAddress = Provider<String>((ref) {
 //Provider to store phone number at login/signUp screen
 final studentPhoneNumber = StateProvider<String>((ref)=>'');
 
+final isUserLoggedIn = StateProvider<bool>((ref)=>false);
+
