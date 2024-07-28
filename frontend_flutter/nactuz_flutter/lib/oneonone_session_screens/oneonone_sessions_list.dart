@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nactuz_flutter/base/combined_card.dart';
-import 'package:nactuz_flutter/media.dart';
-import 'package:nactuz_flutter/styles/app_styles.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../fake_data.dart';
-import '/provider.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
+import '../base/combined_card.dart';
 import '../base/header_user_info.dart';
 import '../base/search_bar.dart';
+import '../fake_data.dart';
+import '../media.dart';
+import '../provider.dart';
+import '../styles/app_styles.dart';
 
-class MockTestsList extends ConsumerStatefulWidget {
-  const MockTestsList({super.key});
+class OneononeSessionsList extends ConsumerStatefulWidget {
+  const OneononeSessionsList({super.key});
 
   @override
-  ConsumerState<MockTestsList> createState() => _MockTestsListState();
+  ConsumerState<OneononeSessionsList> createState() =>
+      _OneononeSessionsListState();
 }
 
-class _MockTestsListState extends ConsumerState<MockTestsList> {
+class _OneononeSessionsListState extends ConsumerState<OneononeSessionsList> {
+  List<Map<String, dynamic>> getDataByType() {
+    return fakeData
+        .where((data) => data['typeOfService'] == '1:1 Session')
+        .toList();
+  }
+
   String _searchValue = '';
 
   void _handleSearchChange(String value) {
@@ -27,20 +32,9 @@ class _MockTestsListState extends ConsumerState<MockTestsList> {
     });
   }
 
-  void goToCartButtonWasPressed() {
-    // Implement the action when the button is pressed
-  }
-
-  List<Map<String, dynamic>> getDataByType() {
-    return fakeData
-        .where((data) => data['typeOfService'] == 'Mock Test')
-        .toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     int counterFromRiverPod = ref.watch(counterProvider);
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -105,5 +99,9 @@ class _MockTestsListState extends ConsumerState<MockTestsList> {
         ),
       ),
     );
+  }
+
+  void goToCartButtonWasPressed() {
+    // Implement the action when the button is pressed
   }
 }

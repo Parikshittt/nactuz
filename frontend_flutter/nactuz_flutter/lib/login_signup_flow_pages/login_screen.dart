@@ -9,6 +9,7 @@ import '../styles/app_styles.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
+
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
@@ -34,7 +35,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void _updateButtonState() {
     final mobileNumberLength = _mobileNumberController.text.length;
-    print('Mobile number length: $mobileNumberLength'); // Debugging line
     setState(() {
       _isButtonEnabled = mobileNumberLength == 10;
     });
@@ -44,26 +44,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     void handleLoginScreenSendOTP() {
       final enteredNumber = _mobileNumberController.text;
-
       if (enteredNumber == '7837615955') {
-        // This block will execute if the number matches a specific value
-        print('Go to OTP screen');
-
-        // Assuming you want to set the value in the provider
         ref.read(studentPhoneNumber.notifier).state = enteredNumber;
-        String updatedNumber = ref.watch(studentPhoneNumber);
-        print('$updatedNumber');
       } else {
         // This block will execute if the number does not match the specific value
         ref.read(studentPhoneNumber.notifier).state = enteredNumber;
-        String updatedNumber = ref.watch(studentPhoneNumber);
-        print('Go to signup screen -> $updatedNumber');
-
-        Navigator.of(context).push(CustomTransition(page: const SignupScreen()));
+        Navigator.of(context)
+            .push(CustomTransition(page: const SignupScreen()));
       }
     }
-
-
 
     return Scaffold(
       body: Scaffold(

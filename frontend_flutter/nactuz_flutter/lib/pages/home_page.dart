@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Ensure you import flutter_svg package
+import 'package:nactuz_flutter/home_page_screens/my_profile.dart';
 import '../home_page_screens/home_screen.dart';
 import '../media.dart';
 
@@ -13,10 +14,8 @@ class HomePage extends StatefulWidget {
 class _BottomNavigationToHomePageState extends State<HomePage> {
   final List<Widget> _appScreens = const [
     HomeScreen(),
-    Center(child: Text('Page 2 : Test')),
+    MyProfile(),
     Center(child: Text('Page 3 : Analysis')),
-    Center(child: Text('Page 4 : Doubts')),
-    Center(child: Text('Page 5 : One On One')),
   ];
 
   int _selectedIconIndex = 0;

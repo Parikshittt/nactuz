@@ -59,15 +59,18 @@ class _EnterOtpState extends ConsumerState<EnterOtp> {
 
   Future<void> _handleSubmitOTP() async {
     if (_otpInputByUser == '110401') {
-      print('OTP Verified!!!!!!!');
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isUserLoggedIn', true);
-      Navigator.of(context).push(CustomTransition(page: const HomePage()));
 
+      // Check if the widget is still mounted before navigating
+      if (mounted) {
+        Navigator.of(context).push(CustomTransition(page: const HomePage()));
+      }
     } else {
-      print('Verification failed');
+      // Handle the case where OTP is incorrect
     }
   }
+
 
   @override
   void dispose() {

@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Provider for the list of items in the cart
-final itemsInCartProvider = StateProvider<List<dynamic>>((ref) => []);
+final itemsInWishlistProvider = StateProvider<List<dynamic>>((ref) => []);
 
 // Provider for the counter, which depends on the items in the cart
 final counterProvider = Provider<int>((ref) {
-  final itemsInCart = ref.watch(itemsInCartProvider);
-  return itemsInCart.length;
+  final itemsInWishlist = ref.watch(itemsInWishlistProvider);
+  return itemsInWishlist.length;
 });
 
 //Provider for the student's name
@@ -20,7 +20,6 @@ final studentFullAddress = Provider<String>((ref) {
 });
 
 //Provider to store phone number at login/signUp screen
-final studentPhoneNumber = StateProvider<String>((ref)=>'');
+final studentPhoneNumber = StateProvider<String>((ref) => '');
 
-final isUserLoggedIn = StateProvider<bool>((ref)=>false);
-
+final isUserLoggedIn = StateProvider<bool>((ref) => false);

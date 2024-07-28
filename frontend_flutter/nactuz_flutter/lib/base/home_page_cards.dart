@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:nactuz_flutter/pages/mock_tests.dart';
+import 'package:nactuz_flutter/pages/doubt_sessions.dart';
+import 'package:nactuz_flutter/pages/oneonone_sessions.dart'; // Add this import
 import '../styles/app_styles.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart'; // Add this import
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomePageCards extends StatefulWidget {
   const HomePageCards({super.key});
@@ -17,15 +20,38 @@ class _HomePageCardsState extends State<HomePageCards> {
     setState(() {
       _activeCardType = cardType;
     });
+
+    Widget targetPage;
+    switch (cardType) {
+      case 'MOCK TESTS':
+        targetPage = const MockTests();
+        break;
+      case 'DOUBT SESSIONS':
+        targetPage = const DoubtSessions();
+        break;
+      case '1:1 SESSION':
+        targetPage = const OneononeSessions();
+        break;
+      default:
+        targetPage = Scaffold(
+          body: const Center(child: Text('Coming Soon')).animate().blurXY(
+              duration: const Duration(milliseconds: 800),
+              begin: 20,
+              end: 0,
+              curve: Curves.fastEaseInToSlowEaseOut),
+        );
+        break;
+    }
+
     Navigator.of(context)
         .push(
-          MaterialPageRoute(
-            builder: (context) => const MockTests(),
-          ),
-        )
+      MaterialPageRoute(
+        builder: (context) => targetPage,
+      ),
+    )
         .then((_) => setState(() {
-              _activeCardType = null; // Reset after navigation
-            }));
+      _activeCardType = null; // Reset after navigation
+    }));
   }
 
   Widget _buildCard(String title, String tagline, String cardType) {
@@ -55,24 +81,24 @@ class _HomePageCardsState extends State<HomePageCards> {
               padding: const EdgeInsets.all(15),
               child: isActive
                   ? Center(
-                      child: LoadingAnimationWidget.staggeredDotsWave(
-                        color: AppStyles.brandColor,
-                        size: 30,
-                      ),
-                    )
+                child: LoadingAnimationWidget.staggeredDotsWave(
+                  color: AppStyles.brandColor,
+                  size: 30,
+                ),
+              )
                   : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: AppStyles.cardHeaderStyles,
-                        ),
-                        Text(
-                          tagline,
-                          style: AppStyles.cardTagLineStyle,
-                        ),
-                      ],
-                    ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: AppStyles.cardHeaderStyles,
+                  ),
+                  Text(
+                    tagline,
+                    style: AppStyles.cardTagLineStyle,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
