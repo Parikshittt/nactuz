@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nactuz_flutter/media.dart';
 
 import 'package:nactuz_flutter/mock_test_screens/mock_tests_list.dart';
@@ -26,7 +27,7 @@ class _BottomNavBarState extends State<MockTests> {
     if (index == 3) {
       setState(() {
         _selectedIconIndex = 0;
-        Navigator.pushNamed(context, '/');
+        context.go('/studentHomePage');
       });
     } else {
       setState(() {

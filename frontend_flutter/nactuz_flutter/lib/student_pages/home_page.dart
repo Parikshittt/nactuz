@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Ensure you import flutter_svg package
-import 'package:nactuz_flutter/home_page_screens/my_profile.dart';
-import '../home_page_screens/home_screen.dart';
 import '../media.dart';
+import '../student_home_page_screens/home_screen.dart';
+import '../student_home_page_screens/my_profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

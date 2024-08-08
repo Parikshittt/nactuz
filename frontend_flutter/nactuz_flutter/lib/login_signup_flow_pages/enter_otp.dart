@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nactuz_flutter/pages/home_page.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:nactuz_flutter/styles/app_styles.dart';
 import 'package:nactuz_flutter/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../custom_routing/custom_transitions.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class EnterOtp extends ConsumerStatefulWidget {
   const EnterOtp({super.key});
@@ -59,18 +57,18 @@ class _EnterOtpState extends ConsumerState<EnterOtp> {
 
   Future<void> _handleSubmitOTP() async {
     if (_otpInputByUser == '110401') {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('isUserLoggedIn', true);
+      const storage = FlutterSecureStorage();
+      await storage.write(key: 'isUserLoggedIn', value: 'true');
+      bool isStudent = await storage.read(key: 'isStudent') == 'true';
 
       // Check if the widget is still mounted before navigating
       if (mounted) {
-        Navigator.of(context).push(CustomTransition(page: const HomePage()));
+        isStudent ? context.go('/studentHomePage') : context.go('/teacherHomePage');
       }
     } else {
       // Handle the case where OTP is incorrect
     }
   }
-
 
   @override
   void dispose() {

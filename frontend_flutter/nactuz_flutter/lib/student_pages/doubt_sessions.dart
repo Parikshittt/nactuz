@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nactuz_flutter/doubt_session_screens/doubt_session_list.dart';
+import 'package:go_router/go_router.dart';
+
 
 import '../media.dart';
+import '../student_doubt_session_screens/doubt_session_list.dart';
 
 class DoubtSessions extends ConsumerStatefulWidget {
   const DoubtSessions({super.key});
@@ -25,7 +27,7 @@ class _DoubtSessionsState extends ConsumerState<DoubtSessions> {
     if (index == 3) {
       setState(() {
         _selectedIconIndex = 0;
-        Navigator.pushNamed(context, '/');
+        context.go('/studentHomePage');
       });
     } else {
       setState(() {

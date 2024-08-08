@@ -25,6 +25,15 @@ class AppMedia{
   static const upcomingRegular = '$_baseFolder/upcomingRegular.svg';
   static const upcomingFilled = '$_baseFolder/upcomingFilled.svg';
 
+  static const historyRegular = '$_baseFolder/historyRegular.svg';
+  static const historyFilled = '$_baseFolder/historyFilled.svg';
+
+  static const walletRegular = '$_baseFolder/walletRegular.svg';
+  static const walletFilled = '$_baseFolder/walletFilled.svg';
+
+  static const teacherProfileIcon = '$_baseFolder/teacher.svg';
+
+
   static const openCart = '$_baseFolder/openCart.svg';
 
 

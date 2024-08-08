@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nactuz_flutter/login_signup_flow_pages/login_or_signup_option.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../custom_routing/custom_transitions.dart';
 
 class MyProfile extends ConsumerStatefulWidget {
   const MyProfile({super.key});
@@ -19,7 +18,7 @@ class _MyProfileState extends ConsumerState<MyProfile> {
 
     // Check if the widget is still mounted before navigating
     if (mounted) {
-      Navigator.of(context).push(CustomTransition(page: const LoginOrSignupOption()));
+      context.go('/loginSignUpOption');
     }
   }
 

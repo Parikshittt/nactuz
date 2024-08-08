@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:nactuz_flutter/pages/mock_tests.dart';
-import 'package:nactuz_flutter/pages/doubt_sessions.dart';
-import 'package:nactuz_flutter/pages/oneonone_sessions.dart'; // Add this import
+import '../student_pages/doubt_sessions.dart';
+import '../student_pages/mock_tests.dart';
+import '../student_pages/oneonone_sessions.dart';
 import '../styles/app_styles.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 

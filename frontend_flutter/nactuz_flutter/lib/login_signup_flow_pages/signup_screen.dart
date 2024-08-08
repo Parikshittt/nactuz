@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nactuz_flutter/login_signup_flow_pages/enter_otp.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nactuz_flutter/provider.dart';
 import '../base/login_signup_disclaimer.dart';
-import '../custom_routing/custom_transitions.dart';
 import '../styles/app_styles.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
@@ -18,8 +18,10 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
   final TextEditingController _mobileNumberController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   bool _isButtonEnabled = false;
+  bool isTeacherSelected = false;
 
   @override
   void initState() {
@@ -52,17 +54,28 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     final lastName = _lastNameController.text;
 
     setState(() {
-      _isButtonEnabled = mobileNumber.isNotEmpty &&
-          firstName.isNotEmpty &&
-          lastName.isNotEmpty &&
-          mobileNumber.length == 10;
+      if (isTeacherSelected) {
+        _isButtonEnabled = mobileNumber.isNotEmpty &&
+            firstName.isNotEmpty &&
+            lastName.isNotEmpty &&
+            mobileNumber.length == 12;
+      } else {
+        _isButtonEnabled = mobileNumber.isNotEmpty &&
+            firstName.isNotEmpty &&
+            lastName.isNotEmpty &&
+            mobileNumber.length == 10;
+      }
     });
+  }
+
+  Future<void> _setUserType(bool value) async {
+    await _secureStorage.write(key: 'isStudent', value: (!value).toString()); // Setting opposite of value
   }
 
   void handleSignUpScreenSendOTP() {
     final phoneNumber = _mobileNumberController.text;
     ref.read(studentPhoneNumber.notifier).state = phoneNumber;
-    Navigator.of(context).push(CustomTransition(page: const EnterOtp()));
+    context.push('/enterotp');
   }
 
   @override
@@ -105,6 +118,67 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     ),
                   ),
                   const SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isTeacherSelected = false;
+                              _mobileNumberController.text = '';
+                            });
+                            _setUserType(isTeacherSelected);
+                            enableDisableSendOtpButton();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: isTeacherSelected
+                                    ? AppStyles.cardBackgroundColor
+                                    : AppStyles.brandColor,
+                                boxShadow: const [
+                                  BoxShadow(color: Colors.black, blurRadius: 20)
+                                ]),
+                            height: 50,
+                            alignment: Alignment.center,
+                            child: Text('Student',
+                                style: isTeacherSelected
+                                    ? AppStyles.outlineButtonText
+                                    : AppStyles.filledButtonText),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isTeacherSelected = true;
+                              _mobileNumberController.text = '';
+                            });
+                            _setUserType(isTeacherSelected);
+                            enableDisableSendOtpButton();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: isTeacherSelected
+                                    ? AppStyles.brandColor
+                                    : AppStyles.cardBackgroundColor,
+                                boxShadow: const [
+                                  BoxShadow(color: Colors.black, blurRadius: 20)
+                                ]),
+                            height: 50,
+                            alignment: Alignment.center,
+                            child: Text('Teacher',
+                                style: isTeacherSelected
+                                    ? AppStyles.filledButtonText
+                                    : AppStyles.outlineButtonText),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   const Text(
                     'First Name',
                     style: AppStyles.twelveRegularSecond,
@@ -157,10 +231,16 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  const Text(
-                    '10 digit phone number',
-                    style: AppStyles.twelveRegularSecond,
-                  ),
+                  if (isTeacherSelected)
+                    const Text(
+                      'Your Adhaar Number',
+                      style: AppStyles.twelveRegularSecond,
+                    )
+                  else
+                    const Text(
+                      '10 digit phone number',
+                      style: AppStyles.twelveRegularSecond,
+                    ),
                   Container(
                     decoration: const BoxDecoration(
                       border: Border(
@@ -172,10 +252,11 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     ),
                     child: Row(
                       children: [
-                        const Text(
-                          '+91',
-                          style: AppStyles.sixteenBoldSecond,
-                        ),
+                        if (!isTeacherSelected)
+                          const Text(
+                            '+91',
+                            style: AppStyles.sixteenBoldSecond,
+                          ),
                         const SizedBox(width: 5.0),
                         Expanded(
                           child: TextField(
@@ -183,7 +264,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             keyboardType: TextInputType.number,
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
-                              LengthLimitingTextInputFormatter(10),
+                              LengthLimitingTextInputFormatter(
+                                  isTeacherSelected ? 12 : 10),
                             ],
                             decoration: const InputDecoration(
                               border: InputBorder.none,

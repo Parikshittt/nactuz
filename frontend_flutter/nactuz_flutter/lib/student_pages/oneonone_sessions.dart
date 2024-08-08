@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nactuz_flutter/oneonone_session_screens/oneonone_sessions_list.dart';
 
 import '../media.dart';
@@ -25,7 +26,7 @@ class _OneononeSessionsState extends ConsumerState<OneononeSessions> {
     if (index == 3) {
       setState(() {
         _selectedIconIndex = 0;
-        Navigator.pushNamed(context, '/');
+        context.go('/studentHomePage');
       });
     } else {
       setState(() {

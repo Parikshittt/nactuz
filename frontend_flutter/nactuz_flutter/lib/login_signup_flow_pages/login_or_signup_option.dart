@@ -1,9 +1,7 @@
+import 'package:go_router/go_router.dart';
 import 'package:nactuz_flutter/styles/app_styles.dart';
 import 'package:flutter/material.dart';
 import '../base/login_signup_disclaimer.dart';
-import '../custom_routing/custom_transitions.dart';
-import 'login_screen.dart'; // Import your login screen
-import 'signup_screen.dart'; // Import your signup screen
 
 class LoginOrSignupOption extends StatelessWidget {
   const LoginOrSignupOption({super.key});
@@ -41,7 +39,7 @@ class LoginOrSignupOption extends StatelessWidget {
                   children: [
                     Expanded(
                       child: InkWell(
-                        onTap: () => Navigator.of(context).push(CustomTransition(page: const LoginScreen())),
+                        onTap: () => context.push('/login'),
                         child: Container(
                           height: 48,
                           alignment: Alignment.center,
@@ -55,7 +53,7 @@ class LoginOrSignupOption extends StatelessWidget {
                     const SizedBox(width: 15), // Space between the two buttons
                     Expanded(
                       child: InkWell(
-                        onTap: () => Navigator.of(context).push(CustomTransition(page: const SignupScreen())),
+                        onTap: () => context.push('/signup'),
                         child: Container(
                           height: 48,
                           alignment: Alignment.center,

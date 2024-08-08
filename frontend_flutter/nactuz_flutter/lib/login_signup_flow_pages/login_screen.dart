@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nactuz_flutter/base/login_signup_disclaimer.dart';
-import 'package:nactuz_flutter/login_signup_flow_pages/signup_screen.dart';
 import 'package:nactuz_flutter/provider.dart';
-import '../custom_routing/custom_transitions.dart';
 import '../styles/app_styles.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -49,8 +48,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       } else {
         // This block will execute if the number does not match the specific value
         ref.read(studentPhoneNumber.notifier).state = enteredNumber;
-        Navigator.of(context)
-            .push(CustomTransition(page: const SignupScreen()));
+        context.push('/signup');
       }
     }
 
