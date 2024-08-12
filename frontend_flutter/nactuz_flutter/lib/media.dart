@@ -32,8 +32,8 @@ class AppMedia{
   static const walletFilled = '$_baseFolder/walletFilled.svg';
 
   static const teacherProfileIcon = '$_baseFolder/teacher.svg';
-
-
+  static const refreshButton = '$_baseFolder/refreshButton.svg';
+  static const openEye = '$_baseFolder/openEye.svg';
   static const openCart = '$_baseFolder/openCart.svg';
 
 

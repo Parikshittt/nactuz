@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,12 +16,13 @@ class TeacherHomePage extends ConsumerStatefulWidget {
 }
 
 class _TeacherHomePageState extends ConsumerState<TeacherHomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 4;
 
   final List<Widget> _pages = const [
     TeacherHomeScreen(),
     Center(child: Text('Upcoming Screen')), // Placeholder
-    Center(child: Text('History Screen')), // Placeholder
+    Center(child: Text('History Screen')),
+    Center(child: Text('History Screen')),
     TeacherWalletScreen(),
   ];
 
@@ -33,16 +36,37 @@ class _TeacherHomePageState extends ConsumerState<TeacherHomePage> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _bottomSheetButton('CREATE MOCK TEST'),
-              _bottomSheetButton('CREATE DOUBT SESSION'),
-              _bottomSheetButton('CREATE 1:1 SESSION'),
-            ],
-          ),
+        return Stack(
+          children: [
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+              // Adjust the blur intensity as needed
+              child: Container(
+                color: Colors
+                    .transparent, // Make sure the filter is applied over the transparent container
+              ),
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                color: AppStyles.mainBackgroundColor,
+                boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20)],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 15),
+                    _bottomSheetButton('CREATE MOCK TEST'),
+                    const SizedBox(height: 15),
+                    _bottomSheetButton('CREATE DOUBT SESSION'),
+                    const SizedBox(height: 15),
+                    _bottomSheetButton('CREATE 1:1 SESSION'),
+                    const SizedBox(height: 30),
+                  ],
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
@@ -50,6 +74,7 @@ class _TeacherHomePageState extends ConsumerState<TeacherHomePage> {
 
   Widget _bottomSheetButton(String text) {
     return InkWell(
+      onTap: () => Navigator.pop(context),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -73,42 +98,15 @@ class _TeacherHomePageState extends ConsumerState<TeacherHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomAppBar(
-        color: AppStyles.mainBackgroundColor,
-        shape: const CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-              icon: SvgPicture.asset(
-                AppMedia.homeRegular,
-                color: _selectedIndex == 0 ? AppStyles.brandColor : null,
-              ),
-              onPressed: () => _onBottomNavBarItemTapped(0),
-            ),
-            IconButton(
-              icon: SvgPicture.asset(
-                AppMedia.upcomingRegular,
-                color: _selectedIndex == 1 ? AppStyles.brandColor : null,
-              ),
-              onPressed: () => _onBottomNavBarItemTapped(1),
-            ),
-            const SizedBox(width: 40), // Empty space for the FAB
-            IconButton(
-              icon: SvgPicture.asset(
-                AppMedia.historyRegular,
-                color: _selectedIndex == 2 ? AppStyles.brandColor : null,
-              ),
-              onPressed: () => _onBottomNavBarItemTapped(2),
-            ),
-            IconButton(
-              icon: SvgPicture.asset(
-                AppMedia.walletRegular,
-                color: _selectedIndex == 3 ? AppStyles.brandColor : null,
-              ),
-              onPressed: () => _onBottomNavBarItemTapped(3),
-            ),
-          ],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+            boxShadow: [BoxShadow(color: Colors.black, blurRadius: 20)]),
+        child: NavigationBar(
+          indicatorColor: Colors.transparent,
+          backgroundColor: AppStyles.mainBackgroundColor,
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: _onBottomNavBarItemTapped,
+          destinations: _buildNavigationDestinations(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -125,5 +123,35 @@ class _TeacherHomePageState extends ConsumerState<TeacherHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+
+  List<NavigationDestination> _buildNavigationDestinations() {
+    return [
+      NavigationDestination(
+        icon: SvgPicture.asset(AppMedia.homeRegular),
+        label: 'Home',
+        selectedIcon: SvgPicture.asset(AppMedia.homeFilled),
+      ),
+      NavigationDestination(
+        icon: SvgPicture.asset(AppMedia.upcomingRegular),
+        label: 'Upcoming',
+        selectedIcon: SvgPicture.asset(AppMedia.upcomingFilled),
+      ),
+      NavigationDestination(
+        icon: Container(),
+        label: '',
+        enabled: false,
+      ),
+      NavigationDestination(
+        icon: SvgPicture.asset(AppMedia.historyRegular),
+        label: 'History',
+        selectedIcon: SvgPicture.asset(AppMedia.historyFilled),
+      ),
+      NavigationDestination(
+        icon: SvgPicture.asset(AppMedia.walletRegular),
+        label: 'Wallet',
+        selectedIcon: SvgPicture.asset(AppMedia.walletFilled),
+      ),
+    ];
   }
 }

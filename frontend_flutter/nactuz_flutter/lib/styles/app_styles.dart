@@ -24,6 +24,11 @@ class AppStyles {
       fontWeight: FontWeight.w400,
       color: secondTextColor,
       fontFamily: 'InterFigmaFont');
+  static const TextStyle tenRegularSecond = TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      color: secondTextColor,
+      fontFamily: 'InterFigmaFont');
   static const TextStyle twelveBoldMain = TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w700,
@@ -58,6 +63,11 @@ class AppStyles {
       fontFamily: 'InterFigmaFont');
   static const TextStyle sixteenBoldMain = TextStyle(
       fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: mainTextColor,
+      fontFamily: 'InterFigmaFont');
+  static const TextStyle twentyBoldMain = TextStyle(
+      fontSize: 20,
       fontWeight: FontWeight.w700,
       color: mainTextColor,
       fontFamily: 'InterFigmaFont');
