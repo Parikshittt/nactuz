@@ -1,0 +1,99 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/build/
+/android/.gradle/
+/android/local.properties
+/android/.idea/
+/android/gradle.properties
+/android/gradle/
+/android/settings.gradle
+/android/app/src/debug/
+/android/app/src/profile/
+/android/app/src/main/res/raw/
+
+# iOS related
+ios/.symlinks/
+/ios/Pods/
+/ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/.generated/
+ios/.last_run/
+ios/Runner.xcodeproj/
+/ios/Runner.xcworkspace/
+/ios/Flutter/Flutter.podspec
+ios/Runner.xcworkspace/
+/ios/Flutter/Flutter.podspec
+ios/Flutter/App.framework
+ios/Flutter/Generated.xcconfig
+ios/Flutter/GeneratedPluginRegistrant.swift
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/.build
+
+# macOS related
+macos/.build/
+/macos/Flutter/Flutter.podspec
+macos/Flutter/Generated.xcconfig
+macos/Flutter/flutter_export_environment.sh
+macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Windows related
+windows/.build/
+/windows/Flutter/Flutter.podspec
+windows/Flutter/Generated.xcconfig
+windows/Flutter/flutter_export_environment.sh
+windows/Flutter/GeneratedPluginRegistrant.swift
+
+# Linux related
+linux/.build/
+/linux/Flutter/Flutter.podspec
+linux/Flutter/Generated.xcconfig
+linux/Flutter/flutter_export_environment.sh
+linux/Flutter/GeneratedPluginRegistrant.swift
+
+# Web related
+web/.build/
+
+# Files to be included in the repository
+!android/app/src/main/AndroidManifest.xml
+!android/app/src/main/kotlin/com/example/nactuz_flutter/MainActivity.kt
+!lib/main.dart
+!pubspec.yaml
+!README.md
